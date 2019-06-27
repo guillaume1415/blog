@@ -1,0 +1,62 @@
+<?php
+session_start();
+$_SESSION['nom'];
+echo'<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="styleArticle.css">';
+
+ include('Blog.Class.php');    
+ include('Manager.Class.php'); 
+ $bdd= new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
+$affiche= new Manager($bdd);
+$manager= new Manager($bdd); 
+$tab=$manager->getArticle();
+foreach($tab as $aff){
+    //echo 'titre : '.$aff->getTitre().'<br>'; 
+    echo '<div class="[ panel panel-default ] panel-google-plus">
+                  
+                  
+    <div class="panel-heading">
+                      <img class="[ img-circle pull-left ]" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270">
+                      <h3>'.$aff->getNom().'</h3>
+                      <h5><span>Shared publicly</span> - <span>Jun 27, 2014</span> </h5>
+                  </div>
+                  <div class="panel-body">
+                      <p> commantaire  : '.$aff->getCommentaire() .'<br></p>
+                      
+                  </div>
+                  <div class="panel-footer">
+                      <button type="button" class="[ btn btn-default ]">+1</button>
+                      <button type="button" class="[ btn btn-default ]">
+                          <span class="[ glyphicon glyphicon-share-alt ]"></span>
+                      </button>
+                      <div class="input-placeholder">Add a comment...</div>
+                  </div>
+                  <div class="panel-google-plus-comment">
+                      <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image">
+                      <div class="panel-google-plus-textarea">
+                          <textarea rows="4"></textarea>
+                          <button type="submit" class="[ btn btn-success disabled ]">Post comment</button>
+                          <button type="reset" class="[ btn btn-default ]">Cancel</button>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+              </div>
+              <div>
+              <form action="commentaire_verification.php" method="POST">
+                  <!-- mot de passe -->
+                  <textarea name="message" rows="5" cols="30">  </textarea>
+                  <div class="form-group row"></div>
+                  <input type="text" name="id" value="'.$aff->getId() .'">
+                  <!-- bouton -->
+                  <button type="submit" class="btn btn-primary bouton">
+                    envoyer
+                  </button>
+                </form>
+</div>';
+    } 
+?>
+   
+
+         
