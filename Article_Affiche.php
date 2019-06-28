@@ -9,29 +9,35 @@ echo'<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css
  include('Blog.Class.php');    
  include('Manager.Class.php'); 
  $bdd= new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
-$affiche= new Manager($bdd);
+//$aff_com= new Manager($bdd);
 $manager= new Manager($bdd); 
 $tab=$manager->getArticle();
+$tab2=$manager->getCommentaire();
 foreach($tab as $aff){
+    var_dump($aff);
     //echo 'titre : '.$aff->getTitre().'<br>'; 
     echo '<div class="[ panel panel-default ] panel-google-plus">
                   
                   
-    <div class="panel-heading">
+        <div class="panel-heading">
                       <img class="[ img-circle pull-left ]" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270">
                       <h3>'.$aff->getNom().'</h3>
                       <h5><span>Shared publicly</span> - <span>Jun 27, 2014</span> </h5>
                   </div>
                   <div class="panel-body">
-                      <p> commantaire  : '.$aff->getCommentaire() .'<br></p>
+                      <p> commantaire  : '.$aff->getPoste() .'<br></p>
                       
                   </div>
+
                   <div class="panel-footer">
                       <button type="button" class="[ btn btn-default ]">+1</button>
                       <button type="button" class="[ btn btn-default ]">
                           <span class="[ glyphicon glyphicon-share-alt ]"></span>
                       </button>
-                      <div class="input-placeholder">Add a comment...</div>
+                      <div class="input-placeholder">Add a comment...</div>';
+                       /*foreach($tab2 as $aff2){ '
+                      <div class="input-placeholder">' .$aff2->getCommentaire(). '</div>';}
+                      */echo'
                   </div>
                   <div class="panel-google-plus-comment">
                       <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image">
@@ -44,17 +50,19 @@ foreach($tab as $aff){
                   </div>
               </div>
               <div>
+              
+         </div>
               <form action="commentaire_verification.php" method="POST">
                   <!-- mot de passe -->
                   <textarea name="message" rows="5" cols="30">  </textarea>
                   <div class="form-group row"></div>
-                  <input type="text" name="id" value="'.$aff->getId() .'">
+                  <input type="hidden" name="id_aricle" value="'.$aff->getId().'">
                   <!-- bouton -->
                   <button type="submit" class="btn btn-primary bouton">
                     envoyer
                   </button>
                 </form>
-</div>';
+';
     } 
 ?>
    

@@ -8,12 +8,12 @@ session_start();
         
         $bdd= new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', ''   );
         //$bdd= new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-        $id =$_POST['id'];
+        $id_art =$_POST['id_aricle'];
         $message = trim(htmlspecialchars($_POST['message']));
         $pseudo =$_SESSION['nom'];
         $blog= new Blog();
         $manager= new Manager($bdd); 
-        $manager->setCommentaire($pseudo,$message); 
+        $manager->setCommentaire($pseudo,$message,$id_art); 
         
         header('location:Article_Affiche.php');
 ?>

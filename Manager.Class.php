@@ -57,6 +57,41 @@
                 $stmt->closeCursor();
                 return $new_blog;
         }
+
+        public  function  setCommentaire($p,$t,$id_art){
+            //var_dump($b);
+            $stmt = $this->bdd->prepare('INSERT INTO commentaire (id_article, texte, pseudo, date) VALUES(:id_article, :texte,:pseudo,now())');
+            $stmt->bindParam(':id_article', $id_art);
+            $stmt->bindParam(':texte',$t );
+            $stmt->bindParam(':pseudo', $p);  
+            $stmt->execute();
+        }
+        
+        public function getCommentaire(){
+            $stmt = $this->bdd->query('SELECT id_commentaire, id_article, pseudo, texte  FROM commentaire ');
+            $new_blog = array();  
+            $i=0;
+            while($donnees = $stmt->fetch()){
+                    
+                    $c=$donnees['texte'];
+                    $p=$donnees['pseudo'];
+                    $id_com=$donnees['id_commentaire'];
+                    $id_art=$donnees['id_article'];
+                    $b=new blog();
+                    //$b->setTitre($t);
+                    
+                    $b->setNom($p);
+                    $b->setCommentaire($id_com);     
+                    $b->setCommentaire($id_art);           
+                //echo nl2br(htmlspecialchars($donnees['contenu']));  
+                $new_blog[$i]=$b;
+                $i=$i+1;
+               // var_dump($new_blog);
+                //var_dump($new_blog);
+            } // Fin de la boucle des billets
+            $stmt->closeCursor();
+            return $new_blog;
+    }
         public function verification_nom($nom){
             $stmt = $this->bdd -> query ('SELECT pseudo FROM membre WHERE pseudo = "' . $nom . '" ');
             $login = $stmt -> fetch();
@@ -69,13 +104,13 @@
             $stmt->execute();
             return $stmt;
         }
-        public function setCommentaire($p,$t){
+        public function setPoste($p,$t){
             $stmt = $this->bdd->prepare('INSERT INTO commentaire (id_article, pseudo, texte, date) VALUES(:id,:pseudo, :texte,now())');
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':pseudo', $p);
             $stmt->bindParam(':texte',$t);
             $stmt->execute();
           }  
-
+        
     }
 ?>
