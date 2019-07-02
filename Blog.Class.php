@@ -36,7 +36,7 @@ class Blog
   {
     return $this->commentaire;
   }
-  
+
   public function setId($n)
   {
     $this->id = $n;
@@ -45,6 +45,7 @@ class Blog
   {
     return $this->id;
   }
+
   public function setNom($n)
   {
     $this->nom = $n;
@@ -53,6 +54,7 @@ class Blog
   {
     return $this->nom;
   }
+
   public function setId_commentaire($n)
   {
     $this->id_commentaire = $n;
@@ -61,6 +63,7 @@ class Blog
   {
     return $this->id_commentaire;
   }
+
   public function setId_article($n)
   {
     $this->id_article = $n;
@@ -69,6 +72,7 @@ class Blog
   {
     return $this->id_article;
   }
+  
   public function getPoste()
   {
     return $this->poste;
