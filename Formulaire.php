@@ -55,7 +55,7 @@ setcookie("pseudo", " ", time() + 365 * 24 * 3600, null, null, false, true);
                                 <div class="form-group row">
                                     <label for="password" class="col-md-4 col-form-label text-md-right">mot de passe</label>
                                     <div class="col-md-6">
-                                        <input type="password" class="form-control" name="password" required placeholder="mot de passe">
+                                        <input type="password" class="form-control" name="password_checking" required placeholder="mot de passe">
                                     </div>
                                 </div>
                                 <!-- file -->
