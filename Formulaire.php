@@ -45,14 +45,20 @@ setcookie("pseudo", " ", time() + 365 * 24 * 3600, null, null, false, true);
                                         <input type="text" class="form-control" name="nom" required autofocus value="<?php echo $_COOKIE["pseudo"]; ?>">
                                     </div>
                                 </div>
-                                <!-- mot de passe -->
+                                <!-- password -->
                                 <div class="form-group row">
                                     <label for="password" class="col-md-4 col-form-label text-md-right">mot de passe</label>
                                     <div class="col-md-6">
                                         <input type="password" class="form-control" name="password" required placeholder="mot de passe">
                                     </div>
                                 </div>
-
+                                <!-- password checking-->
+                                <div class="form-group row">
+                                    <label for="password" class="col-md-4 col-form-label text-md-right">mot de passe</label>
+                                    <div class="col-md-6">
+                                        <input type="password" class="form-control" name="password" required placeholder="mot de passe">
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <!-- checkbox-->
                                     <div class="col-md-6 offset-md-4">
@@ -107,4 +113,5 @@ setcookie("pseudo", " ", time() + 365 * 24 * 3600, null, null, false, true);
 
 
 </body>
+
 </html>
