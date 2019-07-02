@@ -33,9 +33,8 @@ setcookie("pseudo", " ", time() + 365 * 24 * 3600, null, null, false, true);
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-
                         <div class="card-header">inscription</div>
-
+                        <!-- block form -->
                         <div class="card-body">
                             <form action="inscription_verification.php" method="POST">
                                 <!-- pseudo -->
@@ -59,11 +58,19 @@ setcookie("pseudo", " ", time() + 365 * 24 * 3600, null, null, false, true);
                                         <input type="password" class="form-control" name="password" required placeholder="mot de passe">
                                     </div>
                                 </div>
+                                <!-- file -->
                                 <div class="form-group row">
-                                    <!-- checkbox-->
+                                    <div class="col-md-6 offset-md-4">
+                                        <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
+                                        <p class="mb-1">Choisissez une photo, inferieur 2 Mo.</p>
+                                        <input type="file" name="photo">
+                                    </div>
+                                </div>
+                                <!-- checkbox-->
+                                <div class="form-group row">
                                     <div class="col-md-6 offset-md-4">
                                         <div class="checkbox">
-                                            <label><input type="checkbox" name="remember"> Se souvenir de moi </label>
+                                            <label><input type="checkbox" name="remember"> J'accepte les <a href="http://">CGU</a> </label>
                                         </div>
                                     </div>
                                 </div>
@@ -72,19 +79,19 @@ setcookie("pseudo", " ", time() + 365 * 24 * 3600, null, null, false, true);
                                     <button type="submit" class="btn btn-primary bouton">
                                         envoyer
                                     </button>
-                                    <a href="#" class="btn btn-link">
-                                        mot de passe oublié?
-                                    </a>
-                                    <a href="Connexion.php">connexion</a>
+
                                 </div>
+                                <hr>
+                                <a href="#" class="btn btn-link">
+                                    mot de passe oublié?
+                                </a>
+                                <a href="Connexion.php">connexion</a>
+                            </form>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-
     </main>
     <script>
         var email = document.querySelector('input.email');
