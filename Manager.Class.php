@@ -12,15 +12,17 @@
                    die('Erreur : '.$e->getMessage());
            }
         }
-        public  function  setInscription($n,$p){
-            
+        public function setInscription($menbre, $blog){
+           
+            $pass_hash = $menbre->getPassword();
+            $pseudo = $blog->getNom();
+            $photo = $blog->getPhoto();
+            //var_dump($pseudo);
             $stmt = $this->bdd->prepare('INSERT INTO membre (pseudo, passwor) VALUES(:pseudo, :passwor)');
-            $blog= new Blog();
-            
-            $blog->getNom();
-            $blog->getPassword();
-            $stmt->bindParam(':pseudo', $n);
-            $stmt->bindParam(':passwor',$p);   
+            echo "ok2";
+            $stmt->bindParam(':pseudo', $pseudo);
+            $stmt->bindParam(':passwor',$pass_hash);
+            //$stmt->bindParam(':photo', $photo);   
             $stmt->execute();
             //var_dump($p);
         }
