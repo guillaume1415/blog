@@ -14,7 +14,9 @@ echo include('pageAddArticle.php');
 
 $manager= new Manager($bdd); 
 $tab=$manager->getArticle();
+$tab2=$manager->getCommentaire();
 foreach($tab as $aff){
+    var_dump($aff);
     //echo 'titre : '.$aff->getTitre().'<br>'; 
     echo '<div class="[ panel panel-default ] panel-google-plus">           
     <div class="panel-heading">
@@ -26,6 +28,7 @@ foreach($tab as $aff){
                       <p> commantaire  : '.$aff->getPoste() .'<br></p>
                       
                   </div>
+
                   <div class="panel-footer">
                       <button type="button" class="[ btn btn-default ]">+1</button>
                       <button type="button" class="[ btn btn-default ]">
@@ -52,6 +55,8 @@ foreach($tab as $aff){
                   </div>
               </div>
               <div>
+              
+         </div>
               <form action="commentaire_verification.php" method="POST">
                   <!-- mot de passe -->
                   <textarea name="message" rows="5" cols="30">  </textarea>
@@ -62,7 +67,7 @@ foreach($tab as $aff){
                     envoyer
                   </button>
                 </form>
-</div>';
+';
     } 
 ?>
    

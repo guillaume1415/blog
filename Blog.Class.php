@@ -6,6 +6,7 @@
         protected $id_article;
         protected $id_commentaire;
         protected $nom;
+        protected $poste;
         public function setTitre($n){
              $this->titre=$n;
            }
@@ -33,7 +34,7 @@
         public function setNom($n){
             $this->nom=$n;
           }
-       public function getNom(){
+        public function getNom(){
            return $this->nom;
           }
         public function setId_commentaire($n){
