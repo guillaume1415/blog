@@ -12,13 +12,12 @@ class Manager
         }
     }
    
-    public function setInscription($n, $p)  // requete inser new personne dans bdd
+    public function setInscription($membre, $blog)  // requete inser new personne dans bdd
     {
         $stmt = $this->bdd->prepare('INSERT INTO membre (pseudo, passwor) VALUES(:pseudo, :passwor)');
-        $blog = new Blog();
-
-        $blog->getNom();
-        $blog->getPassword();
+        
+        $n=$blog->getNom();
+        $p=$membre->getPassword();
         $stmt->bindParam(':pseudo', $n);
         $stmt->bindParam(':passwor', $p);
         $stmt->execute();
@@ -29,7 +28,6 @@ class Manager
     {
         //var_dump($b);
         $stmt = $this->bdd->prepare('INSERT INTO Article (pseudo, commentaire) VALUES(:pseudo, :commentaire)');
-        $message = $message;
         $blog = new Blog();
         $p = $blog->getNom();
         //$c=$blog->getPoste();

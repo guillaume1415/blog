@@ -5,6 +5,7 @@
         protected $commentaire;
         protected $id_article;
         protected $id_commentaire;
+        protected $nom;
         public function setTitre($n){
              $this->titre=$n;
            }
