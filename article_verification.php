@@ -13,7 +13,7 @@ session_start();
         $pseudo =$_SESSION['nom'];
         $blog= new Blog();
         $manager= new Manager($bdd); 
-        $manager->setCommentaire($pseudo,$message,$id_article); 
+        $manager->setArticle($message); 
         
         header('location:Article_Affiche.php');
 ?>

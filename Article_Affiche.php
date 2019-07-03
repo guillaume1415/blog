@@ -9,7 +9,7 @@ echo'<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css
  include('Blog.Class.php');    
  include('Manager.Class.php'); 
  $bdd= new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
-$affiche= new Manager($bdd);
+
 $manager= new Manager($bdd); 
 $tab=$manager->getArticle();
 foreach($tab as $aff){
@@ -23,7 +23,7 @@ foreach($tab as $aff){
                       <h5><span>Shared publicly</span> - <span>Jun 27, 2014</span> </h5>
                   </div>
                   <div class="panel-body">
-                      <p> commantaire  : '.$aff->getCommentaire() .'<br></p>
+                      <p> commantaire  : '.$aff->getPoste() .'<br></p>
                       
                   </div>
                   <div class="panel-footer">
@@ -31,7 +31,15 @@ foreach($tab as $aff){
                       <button type="button" class="[ btn btn-default ]">
                           <span class="[ glyphicon glyphicon-share-alt ]"></span>
                       </button>
-                      <div class="input-placeholder">Add a comment...</div>
+                      <div class="input-placeholder">Add a comment...</div>';
+                      //$id_article=$tab2->getId_article();
+                      //$id_article
+                      $tab2=$manager->getCommentaire($aff->getId_article());
+                       foreach($tab2 as $aff2){ 
+                           
+                           echo'
+                      <div class="input-placeholder">' .$aff2->getPoste_commentaire().' et '.$aff->getId_article(). '</div>';}
+                      echo'
                   </div>
                   <div class="panel-google-plus-comment">
                       <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image">
@@ -48,7 +56,7 @@ foreach($tab as $aff){
                   <!-- mot de passe -->
                   <textarea name="message" rows="5" cols="30">  </textarea>
                   <div class="form-group row"></div>
-                  <input type="text" name="id" value="'.$aff->getId() .'">
+                  <input type="hidden" name="id" value="'.$aff->getId_article() .'">
                   <!-- bouton -->
                   <button type="submit" class="btn btn-primary bouton">
                     envoyer

@@ -12,7 +12,8 @@
                    die('Erreur : '.$e->getMessage());
            }
         }
-        public  function  setInscription($n,$p){
+        //requete inser new personne dans bdd
+        public function  setInscription($n,$p){
             
             $stmt = $this->bdd->prepare('INSERT INTO membre (pseudo, passwor) VALUES(:pseudo, :passwor)');
             $blog= new Blog();
@@ -24,6 +25,7 @@
             $stmt->execute();
             //var_dump($p);
         }
+        //requete inser new article dans bdd
         public  function  setArticle($b){
             //var_dump($b);
             $stmt = $this->bdd->prepare('INSERT INTO Article (titre, commentaire) VALUES(:titre, :commentaire)');
@@ -33,21 +35,20 @@
             $stmt->bindParam(':commentaire',$c );   
             $stmt->execute();
         }
-           // On récupère les 5 derniers billets
+        // On récupère les 5 derniers billets
         public function getArticle(){
                 $stmt = $this->bdd->query('SELECT id, titre, pseudo, commentaire  FROM Article ORDER BY id DESC LIMIT 0, 5');
                 $new_blog = array();  
                 $i=0;
                 while($donnees = $stmt->fetch()){
-                        
                         $c=$donnees['commentaire'];
                         $p=$donnees['pseudo'];
-                        $id=$donnees['id'];
+                        $id_article=$donnees['id'];
                         $b=new blog();
                         //$b->setTitre($t);
-                        $b->setId($id);
+                        $b->setId_article($id_article);
                         $b->setNom($p);
-                        $b->setCommentaire($c);               
+                        $b->setPoste($c);               
                     //echo nl2br(htmlspecialchars($donnees['contenu']));  
                     $new_blog[$i]=$b;
                     $i=$i+1;
@@ -69,13 +70,39 @@
             $stmt->execute();
             return $stmt;
         }
+        //inser commentter bdd
         public function setCommentaire($p,$t){
             $stmt = $this->bdd->prepare('INSERT INTO commentaire (id_article, pseudo, texte, date) VALUES(:id,:pseudo, :texte,now())');
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':pseudo', $p);
             $stmt->bindParam(':texte',$t);
             $stmt->execute();
-          }  
+          } 
+
+        public function getCommentaire($id_article){
+            $stmt = $this->bdd->query('SELECT `id_commentaire`,`id_article`, `pseudo`,`texte` FROM commentaire WHERE id_article = "' . $id_article . '" ');
+            $new_blog = array();  
+            $i=0;
+            while($donnees = $stmt->fetch()){
+                    $message=$donnees['texte'];
+                    $pseudo=$donnees['pseudo'];
+                    $id_article=$donnees['id_article'];
+                    $id_commentaire=$donnees['id_commentaire'];
+                    $b=new blog();
+                    //$b->setTitre($t);
+                    $b->setId_article($id_article);
+                    $b->setId_commentaire($id_commentaire);       
+                    $b->setNom($pseudo);
+                    $b->setPoste_commentaire($message);               
+                //echo nl2br(htmlspecialchars($donnees['contenu']));  
+                $new_blog[$i]=$b;
+                $i=$i+1;
+               // var_dump($new_blog);
+                //var_dump($new_blog);
+            } // Fin de la boucle des billets
+            $stmt->closeCursor();
+            return $new_blog;
+    }
 
     }
 ?>
