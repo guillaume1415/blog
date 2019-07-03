@@ -10,13 +10,13 @@ echo'<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css
  include('Manager.Class.php'); 
  $bdd= new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
 
+echo include('pageAddArticle.php');
+
 $manager= new Manager($bdd); 
 $tab=$manager->getArticle();
 foreach($tab as $aff){
     //echo 'titre : '.$aff->getTitre().'<br>'; 
-    echo '<div class="[ panel panel-default ] panel-google-plus">
-                  
-                  
+    echo '<div class="[ panel panel-default ] panel-google-plus">           
     <div class="panel-heading">
                       <img class="[ img-circle pull-left ]" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270">
                       <h3>'.$aff->getNom().'</h3>
