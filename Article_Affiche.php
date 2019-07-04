@@ -14,7 +14,7 @@ echo include('pageAddArticle.php');
 
 $manager= new Manager($bdd); 
 $tab=$manager->getArticle();
-$tab2=$manager->getCommentaire();
+//$tab2=$manager->getCommentaire();
 foreach($tab as $aff){
     var_dump($aff);
     //echo 'titre : '.$aff->getTitre().'<br>'; 
