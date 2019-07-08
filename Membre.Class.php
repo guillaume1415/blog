@@ -1,10 +1,12 @@
 <?php
-    class menbre{
+    class membre{
+        
+        
         
         protected $password;
 
        
-          
+         
         public function setPassword($n){
             $this->password=$n;
           }

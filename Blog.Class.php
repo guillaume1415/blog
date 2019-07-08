@@ -3,14 +3,10 @@
         protected $titre;
         protected $photo;
         protected $commentaire;
-        protected $id;
-        protected $id_commentaire;
         protected $id_article;
+        protected $id_commentaire;
         protected $nom;
         protected $poste;
-
-
-        
         public function setTitre($n){
              $this->titre=$n;
            }
@@ -23,10 +19,10 @@
         public function getPhoto(){
            return $this->photo;
           }
-        public function setCommentaire($n){
+        public function setPoste_commentaire($n){
             $this->commentaire=$n;
           }
-        public function getCommentaire(){
+        public function getPoste_commentaire(){
            return $this->commentaire;
           }
           public function setId($n){
@@ -52,6 +48,9 @@
           }
         public function getId_article(){
            return $this->id_article;
+          }
+        public function setPoste($n){
+            $this->poste=$n;
           }
         public function getPoste(){
             return $this->poste;
