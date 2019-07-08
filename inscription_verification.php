@@ -11,7 +11,7 @@ try {
         $manager= new Manager($bdd); 
         $login=$manager->verification_nom($_POST['nom']);
         if (strtolower ($_POST['nom']) != strtolower ($login['pseudo'])) {
-            
+            $pseudo=$_POST['nom'];
            // if (preg_match('#^[\w.-]+@[\w.-]+\.[a-z]{2,6}$#i', $_POST['email'])) {
                
                 //if ($_POST['password'] == $_POST['password_verification']) {
@@ -19,8 +19,9 @@ try {
                     // Hachage du mot de passe
                       $pass_hash = hash('sha512', $_POST['password']);
                       $membre->setPassword($pass_hash);
-                      $blog->setNom($login);
+                      $blog->setNom($pseudo);
                     // Insertion
+                    
                     $manager->setInscription($membre,$blog);    
                     header('location:Connexion.php');   
         }   
