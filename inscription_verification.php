@@ -1,8 +1,9 @@
-<?php 
-    
-    include('Blog.Class.php');    
-    include('Manager.Class.php'); 
-    include('Membre.Class.php');
+<?php
+
+include('Blog.Class.php');
+include('Manager.Class.php');
+include('Membre.Class.php');
+try {
     //if (test_isset_empty($_POST['nom']) /*&& test_isset_empty($_POST['pass']) && test_isset_empty($_POST['email']) test_isset_empty($_POST['password_verification'])*/) {
         $bdd= new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
         $blog= new Blog();
@@ -31,4 +32,6 @@
     else {
         header('page_inscription.php');
     }*/
-?>
+
+
+//------------------
