@@ -1,4 +1,5 @@
 <?php
+//version 8.7.2019
 session_start();
 
 include('Blog.Class.php');
