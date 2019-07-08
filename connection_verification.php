@@ -1,4 +1,5 @@
 <?php 
+session_start();
     include('Blog.Class.php');    
     include('Manager.Class.php');
     include('Membre.Class.php');
@@ -24,13 +25,13 @@
         if ($nombre_ligne != 0) {
             //echo "<h2>login correct !</h2>";
             
-            session_start();
-            $_SESSION['nom'] = $_POST['nom'];
             
+            $_SESSION['pseudo']=$pseudo;
+            //echo $_SESSION['nom'];
            header('location:Article_Affiche.php?message=1');
         }
         else {
-            //header ("location: connexion.php?message=1");
+            header ("location: connexion.php?message=1");
         }
         $stmt->closeCursor();
     }

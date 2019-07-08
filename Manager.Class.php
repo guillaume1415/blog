@@ -29,7 +29,7 @@ class Manager
         //var_dump($b);
         $stmt = $this->bdd->prepare('INSERT INTO Article (pseudo, commentaire) VALUES(:pseudo, :commentaire)');
         $blog = new Blog();
-        $p = $blog->getNom();
+        $p =$_SESSION['pseudo'];
         //$c=$blog->getPoste();
         $stmt->bindParam(':pseudo', $p);
         $stmt->bindParam(':commentaire', $message);
@@ -74,7 +74,7 @@ class Manager
         return $stmt;
     }
     //inser commentter bdd
-    public function setCommentaire($p, $t)
+    public function setCommentaire($p, $t,$id)
     {
         $stmt = $this->bdd->prepare('INSERT INTO commentaire (id_article, pseudo, texte, date) VALUES(:id,:pseudo, :texte,now())');
         $stmt->bindParam(':id', $id);
@@ -107,5 +107,12 @@ class Manager
         } // Fin de la boucle des billets
         $stmt->closeCursor();
         return $new_blog;
+    }
+    public function setSuppressCommentaire($blog)
+    {
+        $stmt = $this->bdd->prepare('DELETE FROM `commentaire` WHERE `id_commentaire` = :id ');
+        $id=$blog->getId_commentaire();
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
     }
 }
